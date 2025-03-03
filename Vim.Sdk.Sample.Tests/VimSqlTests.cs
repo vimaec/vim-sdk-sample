@@ -74,7 +74,6 @@ public static class VimSqlTests
             // The code below illustrates a few SQL queries on the database.
 
             // SQL SAMPLE: Basic Element information from the [dbo].[Element] table
-            
             {
                 logger.LogInformation("------------------------------------------------------------");
                 logger.LogInformation("BASIC ELEMENT INFORMATION");
