@@ -1,0 +1,9 @@
+.vs/
+
+bin/
+obj/
+
+*.user
+
+nuget_local/*
+!nuget_local/.gitkeep
