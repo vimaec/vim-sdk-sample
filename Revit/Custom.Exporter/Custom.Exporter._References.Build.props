@@ -1,0 +1,45 @@
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <!-- Revit Project Properties -->
+  <PropertyGroup Label="RevitProjectProperties" Condition="'$(YearVersion)' != ''">
+    <RevitLibDir>..\lib\$(YearVersion)\</RevitLibDir>
+    <RevitAPI_dll>$(RevitLibDir)RevitAPI.dll</RevitAPI_dll>
+    <RevitAPIUI_dll>$(RevitLibDir)RevitAPIUI.dll</RevitAPIUI_dll>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="RevitAPI">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(RevitAPI_dll)</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="RevitAPIUI">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(RevitAPIUI_dll)</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup Condition="('$(TargetFramework)'=='net471') Or ('$(TargetFramework)'=='net48')">
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)'=='net8.0'">
+    <FrameworkReference Include="Microsoft.WindowsDesktop.App"/>
+  </ItemGroup>
+</Project>

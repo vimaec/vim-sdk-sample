@@ -1,0 +1,33 @@
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <!-- Read any parent Directory.Build.props files -->
+  <PropertyGroup>
+    <ParentDirectoryBuildPropsPath>$([MSBuild]::GetPathOfFileAbove('Directory.Build.props', '$(MSBuildThisFileDirectory)..\'))</ParentDirectoryBuildPropsPath>
+  </PropertyGroup>
+
+  <ImportGroup>
+    <Import Condition="$(ParentDirectoryBuildPropsPath) != ''" Project="$(ParentDirectoryBuildPropsPath)" />
+  </ImportGroup>
+
+  <!-- YearVersion is detected if the project's full path contains vYYYY [2018..20**] -->
+  <PropertyGroup Label="YearVersion Detection">
+    <YearVersion>$([System.Text.RegularExpressions.Regex]::Match($(MSBuildProjectFullPath), 'v(\d{4})').Groups[1].Value)</YearVersion>
+    <!-- Fallback if no year is found -->
+    <YearVersion Condition="'$(YearVersion)' == ''">YEAR_VERSION_UNDEFINED</YearVersion>
+  </PropertyGroup>
+
+  <!--
+    WORKAROUND: if the YearVersion exists, we need to refine the obj/ folder path to avoid conflicts
+    when multiple .csproj files co-exist in the same folder. Otherwise, their compilation artifacts
+    will conflict in the same obj/ folder. Specifically, we need to set MSBuildProjectExtensionPath
+    inside this file (Directory.Build.props) so that NuGet dependencies are correctly routed to the right subfolder.
+
+    ***(!) DOING THIS OUTSIDE OF a Directory.Build.props WILL YIELD INCORRECT RESULTS. (!)***
+  -->
+  <PropertyGroup Label="obj path redirect" Condition="'$(YearVersion)' != ''">
+    <IntermediateOutputPath>obj\$(YearVersion)\</IntermediateOutputPath>
+    <BaseIntermediateOutputPath>obj\$(YearVersion)\</BaseIntermediateOutputPath>
+    <MSBuildProjectExtensionsPath>obj\$(YearVersion)\</MSBuildProjectExtensionsPath>
+  </PropertyGroup>
+
+</Project>

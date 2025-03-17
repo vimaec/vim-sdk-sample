@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RevitAddIns>
+  <AddIn Type="Application">
+    <Text>Custom Exporter</Text>
+    <Name>Custom Exporter</Name>
+    <Description>Custom VIM exporter</Description>
+    <Assembly>Custom.Exporter\Custom.Exporter.dll</Assembly>
+    <FullClassName>Custom.Exporter.Plugin</FullClassName>
+    <AddInId>2fc953dc-e514-4422-849a-59c8687a633c</AddInId>
+    <VendorId>com.custom-exporter</VendorId>
+    <VendorDescription>custom-exporter-company</VendorDescription>
+  </AddIn>
+
+  <AddIn Type="Command">
+    <Text>Custom Exporter Command</Text>
+    <Name>Custom Exporter Command</Name>
+    <Description>Exports VIM files.</Description>
+    <Assembly>Custom.Exporter\Custom.Exporter.dll</Assembly>
+    <FullClassName>Custom.Exporter.PluginWindowCommand</FullClassName>
+    <AddInId>e7457a2d-a5b1-4dfe-9f5d-6ba1028d74f3</AddInId>
+    <VendorId>com.custom-exporter</VendorId>
+    <VendorDescription>custom-exporter-company</VendorDescription>
+  </AddIn>
+</RevitAddIns>

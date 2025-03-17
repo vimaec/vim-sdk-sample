@@ -1,0 +1,26 @@
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup Label="AddinPaths">
+    <CustomExporterName>Custom.Exporter</CustomExporterName>
+    <CustomExporterAddinName>$(CustomExporterName).addin</CustomExporterAddinName>
+    <AppDataRevitYearPluginDir>$(AppData)\Autodesk\Revit\Addins\$(YearVersion)\</AppDataRevitYearPluginDir>
+    <AppDataAddinPath>$(AppDataRevitYearPluginDir)$(CustomExporterAddinName)</AppDataAddinPath>
+    <AppDataAddinDir>$(AppDataRevitYearPluginDir)$(CustomExporterName)</AppDataAddinDir>
+  </PropertyGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command='REM Delete any previous Custom.Exporter plugin files and folders in AppData to avoid conflicts.
+if exist "$(AppDataAddinPath)" del "$(AppDataAddinPath)"
+if exist "$(AppDataAddinDir)" (
+  for /d %%i in ($(AppDataAddinDir)*) do rmdir /s /q "%%i"
+)
+
+REM IMPORTANT: Revit prioritizes the AppData path over the ProgramData path for loading the same .addin file.
+
+REM Copy the newly compiled binaries and .addin file into AppData.
+if not exist "$(AppDataAddinDir)" mkdir "$(AppDataAddinDir)"
+copy "$(ProjectDir)$(CustomExporterAddinName)" "$(AppDataAddinPath)"
+copy "$(TargetDir)*.dll" "$(AppDataAddinDir)"'/>
+  </Target>
+
+</Project>
