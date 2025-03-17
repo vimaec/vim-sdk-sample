@@ -22,7 +22,7 @@ namespace Custom.Exporter
         /// <summary>
         /// The exporter view model.
         /// </summary>
-        private static CustomExporterViewModel _customExporterViewModel;
+        private static MainWindowViewModel _mainWindowViewModel;
 
         /// <summary>
         /// The exporter user interface.
@@ -52,7 +52,7 @@ namespace Custom.Exporter
         /// </summary>
         public Result OnShutdown(UIControlledApplication revitApp)
         {
-            _customExporterViewModel.SaveUserSettings();
+            _mainWindowViewModel.Save();
 
             return Result.Succeeded;
         }
@@ -74,9 +74,9 @@ namespace Custom.Exporter
 
         private static void InnerInitializeExporterApp(Window ownerWindow)
         {
-            _customExporterViewModel = new CustomExporterViewModel(_logger);
+            _mainWindowViewModel = new MainWindowViewModel(_logger);
             _customExporterApp = new CustomExporterApp(
-                _customExporterViewModel,
+                _mainWindowViewModel,
                 ownerWindow); // Initializes the exporter app with the backing view model.
         }
 
@@ -91,7 +91,7 @@ namespace Custom.Exporter
         private static void InnerShowExporterDialog(ExternalCommandData commandData)
         {
             // Assign the command data to the service's singleton. This reference is required for a valid export process.
-            _customExporterViewModel.SetCommandData(commandData);
+            _mainWindowViewModel.SetCommandData(commandData);
 
             // Show the window as a modal dialog once it has gone through its initialization process.
             _customExporterApp.ShowDialog();

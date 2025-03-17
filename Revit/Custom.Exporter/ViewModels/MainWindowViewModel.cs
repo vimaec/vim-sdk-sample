@@ -1,26 +1,22 @@
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 using Vim.Util.Logging;
 
 namespace Custom.Exporter.ViewModels
 {
-    public class CustomExporterViewModel : NotifyPropertyChanged
+    public class MainWindowViewModel : NotifyPropertyChanged
     {
         private readonly ILogger _logger;
 
         /// <summary>
         /// Constructor.
         /// </summary>
-        public CustomExporterViewModel(ILogger logger)
+        public MainWindowViewModel(ILogger logger)
         {
             _logger = logger;
-            UserSettings = new CustomExporterUserSettings(_logger);
+            UserSettings = new UserSettings(_logger);
         }
 
-        public CustomExporterUserSettings UserSettings { get; }
+        public UserSettings UserSettings { get; }
 
         public void Save()
             => UserSettings.Save();
@@ -55,7 +51,7 @@ namespace Custom.Exporter.ViewModels
 
         public void Reset()
         {
-
+            // TODO
         }
     }
 }

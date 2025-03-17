@@ -77,18 +77,17 @@
         BasedOn="{StaticResource TextBlockBaseStyle}"
         TargetType="TextBlock">
         <Setter Property="FontFamily" Value="Resources/Roboto/#Roboto Regular" />
-        <Setter Property="Foreground" Value="#707372" />
+        <Setter Property="Foreground" Value="{StaticResource CustomExporterWarningSecondaryBrush}" />
     </Style>
 
-    <!--  BUTTON FILL STYLE  -->
-    <Style x:Key="ButtonFillStyle" TargetType="Button">
+    <Style x:Key="ButtonPrimaryStyle" TargetType="Button">
         <Setter Property="Background" Value="{StaticResource CustomExporterBlueBrush}" />
         <Setter Property="Foreground" Value="White" />
         <Setter Property="FontFamily" Value="Resources/Roboto/#Roboto Black" />
         <Setter Property="FontSize" Value="10" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="Cursor" Value="Hand" />
-        <Setter Property="Padding" Value="32,9" />
+        <Setter Property="Padding" Value="16,8" />
         <Setter Property="Height" Value="30" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="Border.CornerRadius" Value="3" />
@@ -135,12 +134,11 @@
 
     <!--  BUTTON CLEAR STYLE  -->
     <Style
-        x:Key="ButtonClearStyle"
-        BasedOn="{StaticResource ButtonFillStyle}"
+        x:Key="ButtonSecondaryStyle"
+        BasedOn="{StaticResource ButtonPrimaryStyle}"
         TargetType="Button">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Foreground" Value="{StaticResource CustomExporterBlueBrush}" />
-        <Setter Property="Padding" Value="32,3" />
         <Setter Property="BorderThickness" Value="1.2" />
         <Setter Property="BorderBrush" Value="{StaticResource CustomExporterBlueBrush}" />
         <Setter Property="Template">

@@ -17,13 +17,17 @@ using Custom.Exporter.ViewModels;
 namespace Custom.Exporter
 {
     /// <summary>
-    /// Interaction logic for CustomExporterMainWindow.xaml
+    /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class CustomExporterMainWindow : Window
+    public partial class MainWindow : Window
     {
-        public CustomExporterViewModel ViewModel { get; }
+        public MainWindowViewModel ViewModel { get; }
 
-        public CustomExporterMainWindow(CustomExporterViewModel viewModel)
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="viewModel"></param>
+        public MainWindow(MainWindowViewModel viewModel)
         {
             InitializeComponent();
             ViewModel = viewModel;

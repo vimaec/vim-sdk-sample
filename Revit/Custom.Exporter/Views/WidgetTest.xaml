@@ -1,0 +1,41 @@
+﻿<UserControl
+    x:Class="Custom.Exporter.Views.WidgetTest"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Custom.Exporter.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary Source="/Custom.Exporter;component/StyleResources.xaml" />
+    </UserControl.Resources>
+    <StackPanel Orientation="Vertical">
+        <TextBlock Margin="0,8,0,0" Style="{StaticResource TextBlockHeavyStyle}">This is a text block</TextBlock>
+        <TextBox
+            Width="150"
+            Margin="0,8,0,0"
+            HorizontalAlignment="Left"
+            Style="{StaticResource TextBoxStyle}"
+            Text="This is a TextBox" />
+        <Button
+            Margin="0,8,0,0"
+            HorizontalAlignment="Left"
+            Style="{StaticResource ButtonPrimaryStyle}">
+            PRIMARY BUTTON
+        </Button>
+        <Button
+            Margin="0,8,0,0"
+            HorizontalAlignment="Left"
+            Style="{StaticResource ButtonSecondaryStyle}">
+            SECONDARY BUTTON
+        </Button>
+        <Border
+            Margin="0,8,0,0"
+            HorizontalAlignment="Left"
+            Style="{StaticResource WarningBorder}">
+            <TextBlock Style="{StaticResource TextBlockWarningStyle}" Text="This is a warning box." />
+        </Border>
+    </StackPanel>
+</UserControl>

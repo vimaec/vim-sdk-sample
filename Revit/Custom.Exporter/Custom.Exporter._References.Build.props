@@ -39,7 +39,11 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)'=='net8.0'">
+  <ItemGroup Condition="'$(TargetFramework)'=='net8.0-windows'">
     <FrameworkReference Include="Microsoft.WindowsDesktop.App"/>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Vim.Revit.Core" Version="$(YearVersion).0.1" />
   </ItemGroup>
 </Project>

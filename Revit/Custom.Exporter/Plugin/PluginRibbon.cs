@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Media.Imaging;
 using System.Windows.Interop;
 using Autodesk.Revit.UI;
+using Custom.Exporter.Properties;
 
 namespace Custom.Exporter
 {

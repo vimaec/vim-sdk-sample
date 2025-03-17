@@ -18,7 +18,7 @@ namespace Custom.Exporter
     /// <summary>
     /// A NotifyPropertyChanged wrapper around the PocoUserSettings
     /// </summary>
-    public class CustomExporterUserSettings : NotifyPropertyChanged
+    public class UserSettings : NotifyPropertyChanged
     {
         private readonly ILogger _logger;
         private readonly string _settingsFilePath;
@@ -27,7 +27,7 @@ namespace Custom.Exporter
         /// <summary>
         /// Constructor. Loads the user settings.
         /// </summary>
-        public CustomExporterUserSettings(ILogger logger)
+        public UserSettings(ILogger logger)
         {
             _logger = logger;
             _settingsFilePath = Constants.UserSettingsPath;
