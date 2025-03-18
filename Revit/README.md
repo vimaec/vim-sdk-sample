@@ -21,9 +21,13 @@ TODO: description of each file.
 
 To fully customize the plugin in this directory:
 
-Update the GUIDs (you can use https://guidgenerator.com/).
-- In `Custom.Exporter.addin`, generate new GUIDs for the `AddinIds` elements.
-- In `Properties/AssemblyInfo.cs`, generate a new Guid.
+- Update the contents of `Resources/vim_license.txt` with your VIM license key.
+  NOTE: The VIM license will expire based on the negotiated contract, so you must make sure to provide a valid VIM license to the ExportOptions.
+  You can implement a downloading mechanism to fetch the license key from your server to avoid embedding it into your plugin.
+
+- Update the GUIDs (you can use https://guidgenerator.com/).
+  - In `Custom.Exporter.addin`, generate new GUIDs for the `AddinIds` elements.
+  - In `Properties/AssemblyInfo.cs`, generate a new Guid.
 
 - Search and replace the following strings among the filenames and files in this folder. Don't do a blanket search and replace - that might cause unexpected problems. We recommend going file-by-file.
   - `Custom.Exporter`

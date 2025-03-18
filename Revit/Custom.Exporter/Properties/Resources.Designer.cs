@@ -69,5 +69,15 @@ namespace Custom.Exporter.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to INSERT YOUR VIM LICENSE KEY HERE
+        ///.
+        /// </summary>
+        internal static string vim_license {
+            get {
+                return ResourceManager.GetString("vim_license", resourceCulture);
+            }
+        }
     }
 }

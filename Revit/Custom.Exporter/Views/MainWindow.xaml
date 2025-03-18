@@ -14,7 +14,7 @@
     <Window.Resources>
         <ResourceDictionary Source="/Custom.Exporter;component/StyleResources.xaml" />
     </Window.Resources>
-    <StackPanel Orientation="Vertical">
-        <!--<views:WidgetTest />-->
-    </StackPanel>
+    <Grid>
+        <views:WidgetTest Height="300" VerticalAlignment="Top" />
+    </Grid>
 </Window>

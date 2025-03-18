@@ -13,6 +13,7 @@ namespace Custom.Exporter
     public class PocoUserSettings
     {
         public string VimSaveDirectory { get; set; } = Constants.MyDocumentsPluginDir;
+        public string ViewName { get; set; }
     }
 
     /// <summary>
@@ -92,6 +93,25 @@ namespace Custom.Exporter
                 _pocoUserSettings.VimSaveDirectory = value;
 
                 Save(); // save on change
+
+                OnPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// The name of the 3D view to export.
+        /// </summary>
+        public string ViewName
+        {
+            get => _pocoUserSettings.ViewName;
+            set
+            {
+                if (_pocoUserSettings.ViewName == value)
+                    return;
+
+                _pocoUserSettings.ViewName = value;
+
+                Save();
 
                 OnPropertyChanged();
             }

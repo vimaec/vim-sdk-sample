@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vim.Sdk.Sample.Tests", "Vim.Sdk.Sample.Tests\Vim.Sdk.Sample.Tests.csproj", "{B297DABF-3F9A-432F-992C-94F6EEF61522}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Revit", "Revit", "{C6C16077-DCA5-45B8-BA70-D309E59F3794}"
+	ProjectSection(SolutionItems) = preProject
+		Revit\README.md = Revit\README.md
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Custom.Exporter.v2025", "Revit\Custom.Exporter\Custom.Exporter.v2025.csproj", "{DCC4D091-0320-49A7-BF46-2B0FE991AB2B}"
 EndProject
