@@ -34,11 +34,6 @@ namespace Custom.Exporter
             DataContext = ViewModel;
         }
 
-        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            DragMove();
-        }
-
         private void Close_Click(object sender, RoutedEventArgs e)
         {
             Close();

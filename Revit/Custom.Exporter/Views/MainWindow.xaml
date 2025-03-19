@@ -7,14 +7,258 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:views="clr-namespace:Custom.Exporter.Views"
     Title="Custom Exporter"
-    Width="600"
-    Height="450"
     DataContext="{Binding RelativeSource={RelativeSource Self}, Path=ViewModel}"
+    Icon="/Custom.Exporter;component/Resources/icon.ico"
+    SizeToContent="WidthAndHeight"
     mc:Ignorable="d">
     <Window.Resources>
         <ResourceDictionary Source="/Custom.Exporter;component/StyleResources.xaml" />
     </Window.Resources>
-    <Grid>
-        <views:WidgetTest Height="300" VerticalAlignment="Top" />
+    <Grid
+        Width="356"
+        Height="340"
+        Background="{StaticResource CustomExporterLightGrayBrush}">
+
+        <!--  Preflight  -->
+
+        <Grid x:Name="PreflightGrid" Visibility="{Binding PreflightVisibility, FallbackValue='Visible'}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <!--  Setup  -->
+            <StackPanel
+                Grid.Row="0"
+                Margin="16,16,16,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Orientation="Vertical">
+                <TextBlock
+                    Foreground="{StaticResource CustomExporterBlueBrush}"
+                    Style="{StaticResource TextBlockHeavyStyle}"
+                    Text="File Name" />
+                <TextBox
+                    Width="325"
+                    HorizontalAlignment="Left"
+                    Style="{StaticResource TextBoxStyle}"
+                    Text="{Binding SaveFileName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, FallbackValue='File.vim'}" />
+                <TextBlock
+                    Margin="0,16,0,0"
+                    Foreground="{StaticResource CustomExporterBlueBrush}"
+                    Style="{StaticResource TextBlockHeavyStyle}"
+                    Text="Folder" />
+                <StackPanel Orientation="Horizontal">
+                    <TextBox
+                        Width="300"
+                        HorizontalAlignment="Left"
+                        Style="{StaticResource TextBoxStyle}"
+                        Text="{Binding UserSettings.VimSaveDirectory, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, FallbackValue='path\\to\\folder'}" />
+                    <Button
+                        Margin="8,0,0,0"
+                        VerticalAlignment="Center"
+                        Command="{Binding BrowseFileCommand}"
+                        FontSize="16"
+                        Style="{StaticResource FolderSegoeButtonStyle}" />
+                </StackPanel>
+
+                <TextBlock
+                    Margin="0,16,0,0"
+                    Foreground="{StaticResource CustomExporterBlueBrush}"
+                    Style="{StaticResource TextBlockHeavyStyle}"
+                    Text="3D View" />
+                <ComboBox
+                    Width="325"
+                    Margin="0,8,0,0"
+                    HorizontalAlignment="Left"
+                    ItemsSource="{Binding AvailableViewNames}"
+                    SelectedItem="{Binding UserSettings.ViewName}"
+                    SelectedValue="{Binding UserSettings.ViewName}"
+                    Style="{StaticResource ComboBoxStyle}" />
+            </StackPanel>
+
+            <!--  Preflight error message  -->
+            <Border
+                Grid.Row="1"
+                Margin="16"
+                Style="{StaticResource BorderInfoStyle}"
+                Visibility="{Binding PreflightErrorMessageVisibility, FallbackValue='Collapsed'}">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <TextBlock
+                        Height="Auto"
+                        Foreground="{StaticResource CustomExporterBlueBrush}"
+                        Style="{StaticResource TextBlockBaseStyle}">
+                        <Run
+                            BaselineAlignment="Center"
+                            FontFamily="Segoe MDL2 Assets"
+                            Text="" />
+                        <Run Text="{Binding PreflightErrorMessage, FallbackValue='This is a multiline&#x0a;message&#x0a;which contains&#x0a;many lines&#x0a;many lines'}" />
+                    </TextBlock>
+                </ScrollViewer>
+            </Border>
+
+            <!--  Preflight Buttons  -->
+            <StackPanel
+                Grid.Row="2"
+                Margin="16,0,16,16"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Orientation="Horizontal">
+                <Button
+                    Width="75"
+                    Click="Close_Click"
+                    Content="CANCEL"
+                    Style="{StaticResource ButtonSecondaryStyle}" />
+                <Button
+                    Width="75"
+                    Margin="8,0,0,0"
+                    HorizontalAlignment="Left"
+                    Command="{Binding ExportVimCommand}"
+                    Content="START"
+                    IsEnabled="{Binding CanExport}"
+                    Style="{StaticResource ButtonPrimaryStyle}" />
+            </StackPanel>
+        </Grid>
+
+        <!--  Processing  -->
+
+        <Grid x:Name="ProcessingGrid" Visibility="{Binding ProcessingVisibility, FallbackValue='Collapsed'}">
+            <StackPanel
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Orientation="Vertical">
+                <Image Width="150" Source="/Custom.Exporter;component/Resources/in_progress.png" />
+                <TextBlock
+                    Margin="0,16,0,0"
+                    HorizontalAlignment="Center"
+                    FontWeight="Bold"
+                    Foreground="{StaticResource CustomExporterMediumGrayBrush}"
+                    Style="{StaticResource TextBlockBaseStyle}"
+                    Text="Exporting" />
+            </StackPanel>
+        </Grid>
+
+        <!--  Finished  -->
+        <Grid x:Name="FinishedGrid" Visibility="{Binding FinishedVisibility, FallbackValue='Collapsed'}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <!--  Result Message  -->
+
+            <StackPanel
+                Grid.Row="0"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+
+                <!--  Success Message  -->
+                <StackPanel
+                    HorizontalAlignment="Center"
+                    Orientation="Vertical"
+                    Visibility="{Binding FinishedSuccessMessageVisibility, FallbackValue='Collapsed'}">
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        FontSize="30"
+                        Foreground="{StaticResource CustomExporterGreenBrush}"
+                        Style="{StaticResource TextBlockSegoeCheck}" />
+                    <TextBlock
+                        Margin="0,4,0,0"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        FontSize="24"
+                        FontWeight="Bold"
+                        Foreground="{StaticResource CustomExporterGreenBrush}"
+                        Style="{StaticResource TextBlockBaseStyle}"
+                        Text="Success!" />
+                </StackPanel>
+
+                <!--  Failure Message  -->
+                <StackPanel
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Orientation="Vertical"
+                    Visibility="{Binding FinishedErrorMessageVisibility, FallbackValue='Collapsed'}">
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        FontSize="30"
+                        Foreground="{StaticResource CustomExporterRedBrush}"
+                        Style="{StaticResource TextBlockSegoeError}" />
+                    <TextBlock
+                        Margin="0,4,0,0"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        FontSize="24"
+                        FontWeight="Bold"
+                        Foreground="{StaticResource CustomExporterRedBrush}"
+                        Style="{StaticResource TextBlockBaseStyle}"
+                        Text="Error" />
+                </StackPanel>
+
+                <!--  Export time  -->
+                <StackPanel Margin="0,4,0,0" Orientation="Vertical">
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        FontSize="12"
+                        FontWeight="Bold"
+                        Style="{StaticResource TextBlockBaseStyle}"
+                        Text="EXPORT TIME:" />
+                    <TextBlock
+                        Margin="0,4,0,0"
+                        HorizontalAlignment="Center"
+                        FontSize="12"
+                        Style="{StaticResource TextBlockBaseStyle}"
+                        Text="{Binding FinishedTimeMessage, FallbackValue='00:00:00'}" />
+                </StackPanel>
+            </StackPanel>
+
+            <!--  Error message  -->
+            <Border
+                Grid.Row="1"
+                Margin="16"
+                Style="{StaticResource BorderErrorStyle}"
+                Visibility="{Binding FinishedErrorMessageVisibility, FallbackValue='Collapsed'}">
+                <TextBox
+                    Width="300"
+                    Height="Auto"
+                    Foreground="{StaticResource CustomExporterRedBrush}"
+                    Style="{StaticResource SelectableTextBoxStyle}"
+                    Text="{Binding FinishedErrorMessage, FallbackValue='Error: An exception has occurred.&#x0a;Error Details'}"
+                    TextWrapping="Wrap"
+                    VerticalScrollBarVisibility="Auto" />
+            </Border>
+
+            <StackPanel
+                Grid.Row="2"
+                Margin="16,0,16,16"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Orientation="Horizontal">
+
+                <Button
+                    Width="100"
+                    Command="{Binding OpenFolderCommand}"
+                    Content="OPEN FOLDER"
+                    Style="{StaticResource ButtonSecondaryStyle}" />
+
+                <Button
+                    Width="75"
+                    Margin="8,0,0,0"
+                    Command="{Binding OpenFileCommand}"
+                    Content="OPEN FILE"
+                    Style="{StaticResource ButtonSecondaryStyle}" />
+
+                <Button
+                    Width="75"
+                    Margin="8,0,0,0"
+                    Click="Close_Click"
+                    Content="DONE"
+                    Style="{StaticResource ButtonPrimaryStyle}" />
+            </StackPanel>
+        </Grid>
     </Grid>
 </Window>
