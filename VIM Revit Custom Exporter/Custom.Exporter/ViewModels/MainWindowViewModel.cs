@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
+using Vim.License.Lib;
 using Vim.Revit.Core;
 using Vim.Util;
 using Vim.Util.Logging;
@@ -366,7 +367,7 @@ namespace Custom.Exporter.ViewModels
                         // TODO: Modify how your VIM license is obtained.
                         // In this sample, it is stored as a text resource in your plugin but this may cause problems when the license expires.
                         // As an alternative, you can implement a downloading mechanism to fetch the license from your server.
-                        VimLicenseString = Properties.Resources.vim_license
+                        VimLicenseString = Properties.Resources.vim_license.Trim()
                     };
 
                     Vim.Revit.Core.Exporter.Export(revitDocument, outputVimFilePath, exportOptions);
@@ -376,7 +377,7 @@ namespace Custom.Exporter.ViewModels
                 catch (Exception ex)
                 {
                     _logger.LogError(ex);
-                    errorMessage = $"Error: {ex.Message}";
+                    errorMessage = $"Error: {ex}";
                 }
                 finally
                 {

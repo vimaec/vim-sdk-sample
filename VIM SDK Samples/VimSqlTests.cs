@@ -7,8 +7,11 @@ using Vim.Sql;
 using Vim.Util.Logging;
 using Vim.Util.Logging.Serilog;
 
-namespace Vim.Sdk.Sample.Tests;
+namespace Vim.Sdk.Samples;
 
+/// <summary>
+/// The following tests assume a SQL Express database is installed on the local machine.
+/// </summary>
 [TestFixture]
 public static class VimSqlTests
 {

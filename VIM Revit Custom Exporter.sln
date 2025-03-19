@@ -3,24 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vim.Sdk.Sample.Tests", "Vim.Sdk.Sample.Tests\Vim.Sdk.Sample.Tests.csproj", "{B297DABF-3F9A-432F-992C-94F6EEF61522}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Custom.Exporter.v2025", "VIM Revit Custom Exporter\Custom.Exporter\Custom.Exporter.v2025.csproj", "{DCC4D091-0320-49A7-BF46-2B0FE991AB2B}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Revit", "Revit", "{C6C16077-DCA5-45B8-BA70-D309E59F3794}"
-	ProjectSection(SolutionItems) = preProject
-		Revit\README.md = Revit\README.md
-	EndProjectSection
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Custom.Exporter.v2024", "VIM Revit Custom Exporter\Custom.Exporter\Custom.Exporter.v2024.csproj", "{C7D62E6C-7965-4ABB-9D59-82AB5145D9F2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Custom.Exporter.v2025", "Revit\Custom.Exporter\Custom.Exporter.v2025.csproj", "{DCC4D091-0320-49A7-BF46-2B0FE991AB2B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Custom.Exporter.v2023", "VIM Revit Custom Exporter\Custom.Exporter\Custom.Exporter.v2023.csproj", "{1A465E55-1180-4CED-9397-D3286277CAF8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Custom.Exporter.v2024", "Revit\Custom.Exporter\Custom.Exporter.v2024.csproj", "{C7D62E6C-7965-4ABB-9D59-82AB5145D9F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Custom.Exporter.v2022", "VIM Revit Custom Exporter\Custom.Exporter\Custom.Exporter.v2022.csproj", "{D685AD72-5A85-40DA-8316-8E776E03EB73}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Custom.Exporter.v2023", "Revit\Custom.Exporter\Custom.Exporter.v2023.csproj", "{1A465E55-1180-4CED-9397-D3286277CAF8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Custom.Exporter.v2021", "VIM Revit Custom Exporter\Custom.Exporter\Custom.Exporter.v2021.csproj", "{BC2866AC-8975-4B43-BC6A-9F2752F79BC5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Custom.Exporter.v2022", "Revit\Custom.Exporter\Custom.Exporter.v2022.csproj", "{D685AD72-5A85-40DA-8316-8E776E03EB73}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Custom.Exporter.v2021", "Revit\Custom.Exporter\Custom.Exporter.v2021.csproj", "{BC2866AC-8975-4B43-BC6A-9F2752F79BC5}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Custom.Exporter.v2020", "Revit\Custom.Exporter\Custom.Exporter.v2020.csproj", "{4ADF2C5C-C461-4A22-BD5E-A0F80CC0B46B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Custom.Exporter.v2020", "VIM Revit Custom Exporter\Custom.Exporter\Custom.Exporter.v2020.csproj", "{4ADF2C5C-C461-4A22-BD5E-A0F80CC0B46B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -28,10 +21,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B297DABF-3F9A-432F-992C-94F6EEF61522}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B297DABF-3F9A-432F-992C-94F6EEF61522}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B297DABF-3F9A-432F-992C-94F6EEF61522}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B297DABF-3F9A-432F-992C-94F6EEF61522}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DCC4D091-0320-49A7-BF46-2B0FE991AB2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DCC4D091-0320-49A7-BF46-2B0FE991AB2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DCC4D091-0320-49A7-BF46-2B0FE991AB2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -59,14 +48,6 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{DCC4D091-0320-49A7-BF46-2B0FE991AB2B} = {C6C16077-DCA5-45B8-BA70-D309E59F3794}
-		{C7D62E6C-7965-4ABB-9D59-82AB5145D9F2} = {C6C16077-DCA5-45B8-BA70-D309E59F3794}
-		{1A465E55-1180-4CED-9397-D3286277CAF8} = {C6C16077-DCA5-45B8-BA70-D309E59F3794}
-		{D685AD72-5A85-40DA-8316-8E776E03EB73} = {C6C16077-DCA5-45B8-BA70-D309E59F3794}
-		{BC2866AC-8975-4B43-BC6A-9F2752F79BC5} = {C6C16077-DCA5-45B8-BA70-D309E59F3794}
-		{4ADF2C5C-C461-4A22-BD5E-A0F80CC0B46B} = {C6C16077-DCA5-45B8-BA70-D309E59F3794}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {198E3C12-A456-4FF3-AF10-A10F8BF04C78}
