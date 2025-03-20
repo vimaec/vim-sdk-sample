@@ -81,9 +81,9 @@ To customize the VIM Revit exporter plugin in this solution:
 
 ## Installer Notes
 
-Since there are so many ways to create installers, this aspect is not included in the sample code. Nonetheless, when creating your installer, you will need to ensure the following:
+When creating your own plugin installer (not included in this sample), you will need to ensure the following:
 
-- Before publishing to your own customers, make sure you code-sign the DLL files(s) referenced by the `.addin` file, preferably with an extended validation (EV) code signing certificate.
+- Make sure you code-sign the DLL files(s) referenced by the `.addin` file, preferably with an extended validation (EV) code signing certificate.
 
 - To install the plugin for all users on a machine, ensure the `.addin` and its DLL folder are installed under `C:\ProgramData\Autodesk\Revit\Addins\$YearVersion$`
 
@@ -104,7 +104,7 @@ To ensure the same plugin code can be used across different versions of Revit, w
   - `Custom.Exporter._References.Build.props`: defines the references which vary per year and per .NET version.
   - `Custom.Exporter._Targets.Build.targets`: defines the post-build targets which vary per year.
 
-  Example .csproj file:
+  Example .csproj file (Custom.Exporter.v2025.csproj):
   ```
   <Project Sdk="Microsoft.NET.Sdk">
 
@@ -123,4 +123,27 @@ To ensure the same plugin code can be used across different versions of Revit, w
 
 ### C# Code Structure
 
-TODO
+The following is a high-level summary of the main C# files involved in this plugin:
+
+- Custom.Exporter.addin: File copied to `%USERPROFILE%\AppData\Roaming\Autodesk\Revit\Addins\$YearVersion$` upon project build and detected by Revit to bootstrap the plugin's loading process.
+
+- Plugin/
+  - Plugin.cs: The entrypoint of the plugin in Revit. Referenced by Custom.Exporter.addin
+  - PluginCommands.cs: A list of commands included in the plugin. Referenced by Custom.Exporter.addin.
+  - PluginRibbon.cs: Defines the plugin's ribbon interface in Revit.
+
+- Properties/
+  - Resources.resx: Registers the resources available to the plugin.
+
+- Resources/: Contains the resources (images, fonts, etc) used by the plugin.
+  - vim_license.txt: Must be updated to contain your valid VIM license key.
+
+- Views/
+  - MainWindow.xaml|.xaml.cs: The WPF window which defines the plugin user interface.
+  - WidgetTests.xaml|.xaml.cs: A user control which can be used to test various widgets.
+
+- ViewModels/
+  - MainWindowViewModel.cs: The logic which runs in the MainWindow.
+  - UserSettings.cs: Wraps the serializable JSON user settings with change notification events.
+
+- StyleResources.xaml: Styling for WPF components
