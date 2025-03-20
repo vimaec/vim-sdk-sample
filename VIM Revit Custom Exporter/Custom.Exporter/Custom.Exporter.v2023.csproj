@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project=".\Custom.Exporter._Common.Build.props" />
+
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+  </PropertyGroup>
+
+  <Import Project=".\Custom.Exporter._References.Build.props" />
+
+  <Import Project=".\Custom.Exporter._Targets.Build.targets" />
+
+</Project>

@@ -1,0 +1,50 @@
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <UseWpf>true</UseWpf>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Custom.Exporter</RootNamespace>
+    <AssemblyName>Custom.Exporter</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <RunPostBuildEvent>Always</RunPostBuildEvent>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <!-- Necessary to properly copy all dependencies into the Revit plugin folder -->
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <!-- NOTE: $(YearVersion) is defined in Directory.Build.props and relies on the presence of "vXXXX" in the project file name -->
+    <OutputPath>bin\$(Configuration)\$(YearVersion)\</OutputPath>
+    <BuildYearConstant>BUILD_YEAR_$(YearVersion)</BuildYearConstant>
+    <DefineConstants>$(DefineConstants);$(BuildYearConstant)</DefineConstants>
+    <!-- Remove warnings related to architecture mismatch -->
+    <ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
+  </PropertyGroup>
+
+  <!-- To keep the syntax consistent between .net framework versions and .net8 versions... -->
+  <PropertyGroup Condition="('$(TargetFramework)'=='net8.0-windows')">
+    <UseWindowsForms>true</UseWindowsForms>
+    <Nullable>disable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="Custom.Exporter.addin" />
+    <Resource Include="Resources\**\*.ttf" />
+    <Resource Include="Resources\**\*.txt" />
+    <Resource Include="Resources\**\*.pdf" />
+    <Resource Include="Resources\**\*.rtf" />
+    <Resource Include="Resources\**\*.otf" />
+    <Resource Include="Resources\**\*.ico" />
+    <Resource Include="Resources\**\*.png" />
+    <Resource Include="Resources\**\*.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="obj\**" />
+    <EmbeddedResource Remove="obj\**" />
+    <None Remove="obj\**" />
+    <Page Remove="obj\**" />
+  </ItemGroup>
+
+  <Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />
+
+</Project>
