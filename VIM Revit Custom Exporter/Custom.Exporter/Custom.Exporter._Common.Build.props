@@ -16,6 +16,8 @@
     <OutputPath>bin\$(Configuration)\$(YearVersion)\</OutputPath>
     <BuildYearConstant>BUILD_YEAR_$(YearVersion)</BuildYearConstant>
     <DefineConstants>$(DefineConstants);$(BuildYearConstant)</DefineConstants>
+    <!-- Remove warnings related to architecture mismatch -->
+    <ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
   </PropertyGroup>
 
   <!-- To keep the syntax consistent between .net framework versions and .net8 versions... -->
