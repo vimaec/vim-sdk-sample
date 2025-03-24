@@ -38,6 +38,8 @@ To successfully build the solution `VIM Revit Custom Exporter.sln`:
 
     - As mentioned in the Installer Notes below, publishing your plugin files under `C:\ProgramData\Autodesk\Revit\Addins\$YearVersion$` will make it available to all Revit users on that machine.
 
+    - **Important**: If this Custom Exporter and the standard VIM Revit Exporter plugin are both installed simultaneously in the Revit Addins folder, you may encounter assembly loading issues if their underlying assembly versions do not match exactly.
+
 - Open Revit and accept to load the "Custom Exporter" plugin and its command(s) when prompted.
 
 - Open a Revit file to test with.
