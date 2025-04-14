@@ -16,7 +16,7 @@ Before proceeding, please ensure you have met the following criteria:
 
 - As part of your software development partnership with VIM, you will also be granted a **VIM license key** which you will need to successfully export a VIM file using the provided libraries.
 
-  - To get started, replace the contents of [VIM Revit Custom Exporter/Resources/vim_license.txt](./VIM%20Revit%20Custom%20Exporter/Custom.Exporter/Resources/vim_license.txt) with this license key.
+  - To get started, replace the contents of [VIM Revit Custom Exporter/Custom.Exporter/Resources/vim_license.txt](./VIM%20Revit%20Custom%20Exporter/Custom.Exporter/Resources/vim_license.txt) with this license key.
 
   - You may modify the code to adapt to your own VIM license key distribution process, for example to download the key from a central server you manage prior to exporting. In this sample code, the license key is embedded as a resource into the application itself. The main disadvantage to this approach is that you would need to re-compile the application and distribute a new version to your users before the embedded VIM license key expires.
 
@@ -38,6 +38,8 @@ To successfully build the solution `VIM Revit Custom Exporter.sln`:
 
     - As mentioned in the Installer Notes below, publishing your plugin files under `C:\ProgramData\Autodesk\Revit\Addins\$YearVersion$` will make it available to all Revit users on that machine.
 
+    - **Important**: If this Custom Exporter and the standard VIM Revit Exporter plugin are both installed simultaneously in the Revit Addins folder, you may encounter assembly loading issues if their underlying assembly versions do not match exactly.
+
 - Open Revit and accept to load the "Custom Exporter" plugin and its command(s) when prompted.
 
 - Open a Revit file to test with.
@@ -52,7 +54,7 @@ To successfully build the solution `VIM Revit Custom Exporter.sln`:
 
   - The VIM file should successfully export.
 
-  - If you encounter a licensing error, make sure you have correctly updated the contents of `VIM Revit Custom Exporter/Resources/vim_license.txt` with the VIM license key we have provided.
+  - If you encounter a licensing error, make sure you have correctly updated the contents of `VIM Revit Custom Exporter/Custom.Exporter/Resources/vim_license.txt` with the VIM license key we have provided.
 
 - Customize the plugin to make it your own (see below).
 
@@ -93,7 +95,7 @@ When creating your own plugin installer (not included in this sample), you will 
 
 To ensure the same plugin code can be used across different versions of Revit, we opted to define multiple versions of `Custom.Exporter.v$YearVersion$.csproj` alongside the same collection of source files. There are a few details worth mentioning with this setup:
 
-- The file `VIM Revit Custom Exporter/Directory.Build.props` is necessary to make this whole project structure work properly:
+- The file `VIM Revit Custom Exporter/Custom.Exporter/Directory.Build.props` is necessary to make this whole project structure work properly:
 
   - It implements the `<YearVersion>` detection mechanism, which is based on the .csproj file's naming scheme. Specifically, .csproj files names containing strings like "v2024" will have the `<YearVersion>` variable assigned to `2024`, and so on. This is necessary to correctly reference the required dependencies for that version of Revit (both in `VIM Revit Custom Exporter/lib/$YearVersion$` and the `VIM.Revit.Core.$YearVersion$` local NuGet package reference)
 
