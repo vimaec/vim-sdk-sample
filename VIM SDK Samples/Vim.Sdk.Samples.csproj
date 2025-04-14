@@ -5,22 +5,22 @@
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
+  <!--  Sample VIM files -->
+  <ItemGroup>
+    <None Include="..\data\vim\RoomTest.vim" Link="vim\RoomTest.vim">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\data\vim\RoomTestModified.vim" Link="vim\RoomTestModified.vim">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.36" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
     <PackageReference Include="NUnit" Version="3.13.2" />
     <PackageReference Include="NUnit3TestAdapter" Version="4.0.0" />
-    <PackageReference Include="Vim.Sdk.Standalone" Version="0.0.6" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <!-- Sample VIM file -->
-    <None Update="vims\RoomTest.vim">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="vims\RoomTestModified.vim">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <PackageReference Include="Vim.Sdk.Standalone" Version="1.2.*" />
   </ItemGroup>
 
 </Project>

@@ -15,7 +15,7 @@ namespace Vim.Sdk.Samples;
 [TestFixture]
 public static class VimSqlTests
 {
-    private const string vimFilePath = "vims/RoomTest.vim"; // Note: RoomTest.vim is copied to the output directory.
+    private const string vimFilePath = "vim/RoomTest.vim"; // Note: RoomTest.vim is copied to the output directory.
 
     /// <summary>
     /// Sanity check: we can open the VIM file bundled with this package.

@@ -44,6 +44,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Vim.Revit.Core" Version="$(YearVersion).0.1" />
+    <PackageReference Include="Vim.Revit.Core" Version="$(YearVersion).*" />
   </ItemGroup>
 </Project>
