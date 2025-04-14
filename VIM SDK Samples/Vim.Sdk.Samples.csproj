@@ -15,7 +15,10 @@
 
   <ItemGroup>
     <!-- Sample VIM file -->
-    <None Update="RoomTest.vim">
+    <None Update="vims\RoomTest.vim">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="vims\RoomTestModified.vim">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
