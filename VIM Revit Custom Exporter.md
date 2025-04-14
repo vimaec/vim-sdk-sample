@@ -8,9 +8,9 @@ Before proceeding, please ensure you have met the following criteria:
 
 - Autodesk Revit should be installed on your machine for testing purposes.
 
-- If you have a software development partnership with VIM, please contact us to download the NuGet packages `Vim.Revit.Core.$YearVersion$.x.x.nupkg` (one for each supported version of Revit). These packages contain the VIM libraries required to export VIM files from Revit.
+- If you have a software development partnership with VIM, please contact us to download the NuGet packages `Vim.Revit.Core.$YearVersion$.x.x.x.nupkg` (one for each supported version of Revit). These packages contain the VIM libraries required to export VIM files from Revit.
 
-  - Copy these .nupkg files into the `nuget_local` folder as follows: `Vim.Revit.Core.$YearVersion$.x.x.nupkg`
+  - Copy these .nupkg files into the `nuget_local` folder as follows: `Vim.Revit.Core.$YearVersion$.x.x.x.nupkg`
 
   - The `nuget_local` directory is referenced by the [nuget.config](./nuget.config) file at the root of this repository. This allows the solution to use the `nuget_local` folder when resolving packages.
 
