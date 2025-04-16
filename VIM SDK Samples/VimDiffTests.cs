@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using NUnit.Framework;
+using Vim.Format;
 using Vim.Diff;
 using Vim.Util.Logging.Serilog;
 
@@ -12,8 +13,8 @@ public static class VimDiffTests
     public static void TestVimDiff()
     {
         // Note: these VIM files are copied to the output directory.
-        var vimA = "vim/RoomTest.vim"; 
-        var vimB = "vim/RoomTestModified.vim";
+        var vimA = VimScene.LoadVim("vim/RoomTest.vim"); 
+        var vimB = VimScene.LoadVim("vim/RoomTestModified.vim");
 
         // Perform the actual diff calculation.
         var diff = VimDiffService.Diff(vimA, vimB, new VimDiffOptions(CompareGeometry: true, CompareParameters: true));
@@ -24,7 +25,7 @@ public static class VimDiffTests
         var logger = Log.CreateLogger(nameof(TestVimDiff), logFilePath);
 
         //----------------------------------------------------------------
-        // REMOVED
+        // LOG REMOVED
         //----------------------------------------------------------------
         var removed = diff.Removed;
         logger.Log($"[{removed.DiffType:G}: {removed.Count}]");
@@ -34,7 +35,7 @@ public static class VimDiffTests
         logger.Log("");
 
         //----------------------------------------------------------------
-        // ADDED
+        // LOG ADDED
         //----------------------------------------------------------------
         var added = diff.Added;
         logger.Log($"[{added.DiffType:G}: {added.Count}]");
@@ -44,7 +45,7 @@ public static class VimDiffTests
         logger.Log("");
 
         //----------------------------------------------------------------
-        // MODIFIED
+        // LOG MODIFIED
         //----------------------------------------------------------------
         var modified = diff.Modified;
         logger.Log($"[{modified.DiffType:G}: {modified.Count}]");
@@ -76,6 +77,14 @@ public static class VimDiffTests
                 logger.Log($"    + ({nativeValueB}, {displayValueB})");
             }
         }
+
+        //----------------------------------------------------------------
+        // CREATE A VIM CONTAINING ONLY REMOVED ITEMS
+        //----------------------------------------------------------------
+        var elementIndicesToKeep = removed.DiffElements.Select(e => e.ElementIndex).ToHashSet();
+        var transformService = new TransformService(nameof(VimDiffTests), "0.0.0");
+        var documentBuilder = transformService.Filter(vimA, n => elementIndicesToKeep.Contains(n.ElementIndex));
+        documentBuilder.Write("removed_elements.vim");
     }
 
     public static string DiffElementAsString(DiffElement d)
