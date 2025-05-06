@@ -13,8 +13,8 @@ public static class VimDiffTests
     public static void TestVimDiff()
     {
         // Note: these VIM files are copied to the output directory.
-        var vimA = VimScene.LoadVim("vim/RoomTest.vim"); 
-        var vimB = VimScene.LoadVim("vim/RoomTestModified.vim");
+        var vimA = VimScene.LoadVim(VimTestUtils.RoomTestPath); 
+        var vimB = VimScene.LoadVim(VimTestUtils.RoomTestModifiedPath);
 
         // Perform the actual diff calculation.
         var diff = VimDiffService.Diff(vimA, vimB, new VimDiffOptions(CompareGeometry: true, CompareParameters: true));

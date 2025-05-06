@@ -15,15 +15,13 @@ namespace Vim.Sdk.Samples;
 [TestFixture]
 public static class VimSqlTests
 {
-    private const string vimFilePath = "vim/RoomTest.vim"; // Note: RoomTest.vim is copied to the output directory.
-
     /// <summary>
     /// Sanity check: we can open the VIM file bundled with this package.
     /// </summary>
     [Test]
     public static void TestVimFileOpen()
     {
-        var vim = VimScene.LoadVim(vimFilePath); 
+        var vim = VimScene.LoadVim(VimTestUtils.RoomTestPath); 
         Assert.IsTrue(vim.DocumentModel.NumElement > 0);
     }
 
@@ -74,7 +72,7 @@ public static class VimSqlTests
             await vimSqlService.TruncateVimTablesAsync(logger, progress);
 
             // Insert the VIM file into the database.
-            await vimSqlService.InsertVimAsync(vimFilePath, 4, logger, progress);
+            await vimSqlService.InsertVimAsync(VimTestUtils.RoomTestPath, 4, logger, progress);
 
             // The code below illustrates a few SQL queries on the database.
 
