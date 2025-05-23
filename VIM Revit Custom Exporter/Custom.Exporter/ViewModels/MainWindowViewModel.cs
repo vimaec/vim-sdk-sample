@@ -5,14 +5,12 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
-using Vim.License.Lib;
-using Vim.Revit.Core;
-using Vim.Util;
-using Vim.Util.Logging;
+using Serilog;
 
 using Visibility = System.Windows.Visibility;
 
@@ -169,28 +167,28 @@ namespace Custom.Exporter.ViewModels
 
         private void OpenFolder()
         {
-            try
-            {
-                IO.SelectFileInExplorer(VimFilePath);
-            }
-            catch (Exception e)
-            {
-                _logger.LogError(e);
-            }
+            //try
+            //{
+            //    IO.SelectFileInExplorer(VimFilePath);
+            //}
+            //catch (Exception e)
+            //{
+            //    _logger.LogError(e);
+            //}
         }
 
         public CustomCommand OpenFileCommand { get; }
 
         private void OpenFile()
         {
-            try
-            {
-                IO.OpenFile(VimFilePath);
-            }
-            catch (Exception e)
-            {
-                _logger.LogError(e);
-            }
+            //try
+            //{
+            //    IO.OpenFile(VimFilePath);
+            //}
+            //catch (Exception e)
+            //{
+            //    _logger.LogError(e);
+            //}
         }
 
         //------------------------------------------------------------------------------
@@ -345,45 +343,46 @@ namespace Custom.Exporter.ViewModels
 
         public void ExportVim()
         {
-            using (var _ = _logger.LogDuration(nameof(ExportVim)))
-            {
-                MainWindowVisualState = MainWindowVisualState.Processing;
+            _logger.Information("~~~ Exporting DUMMY ~~~");
+            //using (var _ = _logger.LogDuration(nameof(ExportVim)))
+            //{
+            //    MainWindowVisualState = MainWindowVisualState.Processing;
 
-                Application.DoEvents(); // Explicitly call this to let Revit update the UI before it steps into the exporting process.
+            //    Application.DoEvents(); // Explicitly call this to let Revit update the UI before it steps into the exporting process.
 
-                var stopwatch = new Stopwatch();
-                stopwatch.Start();
-                var errorMessage = "";
+            //    var stopwatch = new Stopwatch();
+            //    stopwatch.Start();
+            //    var errorMessage = "";
 
-                try
-                {
-                    var revitDocument = CommandData.Application.ActiveUIDocument.Document;
-                    var outputVimFilePath = VimFilePath;
-                    var viewName = UserSettings.ViewName;
+            //    try
+            //    {
+            //        var revitDocument = CommandData.Application.ActiveUIDocument.Document;
+            //        var outputVimFilePath = VimFilePath;
+            //        var viewName = UserSettings.ViewName;
 
-                    var exportOptions = new ExportOptions
-                    {
-                        View = viewName,
-                        // TODO: Modify how your VIM license is obtained.
-                        // In this sample, it is stored as a text resource in your plugin but this may cause problems when the license expires.
-                        // As an alternative, you can implement a downloading mechanism to fetch the license from your server.
-                        VimLicenseString = Properties.Resources.vim_license.Trim()
-                    };
+            //        var exportOptions = new ExportOptions
+            //        {
+            //            View = viewName,
+            //            // TODO: Modify how your VIM license is obtained.
+            //            // In this sample, it is stored as a text resource in your plugin but this may cause problems when the license expires.
+            //            // As an alternative, you can implement a downloading mechanism to fetch the license from your server.
+            //            VimLicenseString = Properties.Resources.vim_license.Trim()
+            //        };
 
-                    Vim.Revit.Core.Exporter.Export(revitDocument, outputVimFilePath, exportOptions);
+            //        Vim.Revit.Core.Exporter.Export(revitDocument, outputVimFilePath, exportOptions);
 
-                    errorMessage = File.Exists(outputVimFilePath) ? "" : "VIM file not found.";
-                }
-                catch (Exception ex)
-                {
-                    _logger.LogError(ex);
-                    errorMessage = $"Error: {ex}";
-                }
-                finally
-                {
-                    FinishExport(stopwatch.Elapsed, errorMessage);
-                }
-            }
+            //        errorMessage = File.Exists(outputVimFilePath) ? "" : "VIM file not found.";
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        _logger.LogError(ex);
+            //        errorMessage = $"Error: {ex}";
+            //    }
+            //    finally
+            //    {
+            //        FinishExport(stopwatch.Elapsed, errorMessage);
+            //    }
+            //}
         }
 
         public void FinishExport(TimeSpan elapsedTime, string errorMessage)

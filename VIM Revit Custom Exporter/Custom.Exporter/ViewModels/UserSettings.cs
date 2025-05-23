@@ -1,9 +1,8 @@
 ﻿using System;
 using System.IO;
+using System.Xml;
 using Custom.Exporter.ViewModels;
-using Newtonsoft.Json;
-using Vim.Util;
-using Vim.Util.Logging;
+using Serilog;
 
 namespace Custom.Exporter
 {
@@ -22,7 +21,7 @@ namespace Custom.Exporter
     public class UserSettings : NotifyPropertyChanged
     {
         private readonly ILogger _logger;
-        private readonly string _settingsFilePath;
+        //private readonly string _settingsFilePath;
         private readonly PocoUserSettings _pocoUserSettings;
 
         /// <summary>
@@ -31,7 +30,7 @@ namespace Custom.Exporter
         public UserSettings(ILogger logger)
         {
             _logger = logger;
-            _settingsFilePath = Constants.UserSettingsPath;
+            //_settingsFilePath = Constants.UserSettingsPath;
             _pocoUserSettings = Load();
         }
         
@@ -40,20 +39,20 @@ namespace Custom.Exporter
         /// </summary>
         private PocoUserSettings Load()
         {
-            if (!File.Exists(_settingsFilePath))
-            {
-                return new PocoUserSettings();
-            }
+            //if (!File.Exists(_settingsFilePath))
+            //{
+            //    return new PocoUserSettings();
+            //}
 
-            try
-            {
-                var json = File.ReadAllText(_settingsFilePath);
-                return JsonConvert.DeserializeObject<PocoUserSettings>(json) ?? new PocoUserSettings();
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex);
-            }
+            //try
+            //{
+            //    var json = File.ReadAllText(_settingsFilePath);
+            //    return JsonConvert.DeserializeObject<PocoUserSettings>(json) ?? new PocoUserSettings();
+            //}
+            //catch (Exception ex)
+            //{
+            //    _logger.LogError(ex);
+            //}
 
             return new PocoUserSettings();
 
@@ -64,19 +63,19 @@ namespace Custom.Exporter
         /// </summary>
         public void Save()
         {
-            if (string.IsNullOrWhiteSpace(_settingsFilePath))
-                return;
+            //if (string.IsNullOrWhiteSpace(_settingsFilePath))
+            //    return;
 
-            try
-            {
-                IO.CreateFileDirectory(_settingsFilePath);
-                var json = JsonConvert.SerializeObject(_pocoUserSettings, Formatting.Indented);
-                File.WriteAllText(_settingsFilePath, json);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex);
-            }
+            //try
+            //{
+            //    IO.CreateFileDirectory(_settingsFilePath);
+            //    var json = JsonConvert.SerializeObject(_pocoUserSettings, Formatting.Indented);
+            //    File.WriteAllText(_settingsFilePath, json);
+            //}
+            //catch (Exception ex)
+            //{
+            //    _logger.LogError(ex);
+            //}
         }
 
         /// <summary>

@@ -3,8 +3,13 @@ using System.Windows.Interop;
 using Autodesk.Revit.UI;
 using System.Windows.Threading;
 using Custom.Exporter.ViewModels;
-using Vim.Revit.Core;
-using Vim.Util.Logging;
+using Serilog;
+using Autodesk.Revit.DB;
+using System.IO;
+using Serilog.Core;
+
+//using Vim.Revit.Core;
+//using Vim.Util.Logging;
 
 namespace Custom.Exporter
 {
@@ -34,13 +39,58 @@ namespace Custom.Exporter
         /// </summary>
         private static Dispatcher _dispatcher;
 
+        public static ILogger InitLog(string name, string filepath, bool writeToConsole = true)
+        {
+            var logger = CreateLogger(name, filepath, writeToConsole);
+            Serilog.Log.Logger = logger;
+            return logger;
+        }
+
+        public static string CreateFileDirectory(string filepath)
+        {
+            var dirPath = Path.GetDirectoryName(filepath);
+
+            if (!string.IsNullOrEmpty(dirPath) && !Directory.Exists(dirPath))
+            {
+                Directory.CreateDirectory(dirPath);
+            }
+
+            return filepath;
+        }
+
+
+        public static Logger CreateLogger(
+            string name,
+            string filePath = null,
+            bool writeToConsole = true
+        )
+        {
+            var config = new LoggerConfiguration()
+                .MinimumLevel.Debug();
+
+            if (!string.IsNullOrEmpty(filePath))
+            {
+                
+                CreateFileDirectory(filePath);
+                config = config.WriteTo.File(filePath);
+            }
+
+            if (writeToConsole)
+                config.WriteTo.Console();
+
+            return config.CreateLogger();
+
+        }
+
         /// <summary>
         /// Code executed when Revit starts up.
         /// </summary>
         public Result OnStartup(UIControlledApplication revitApp)
         {
             // Initialize the logger.
-            _logger = Logging.Initialize(RevitConstants.RevitYearVersion);
+            //_logger = Logging.Initialize(RevitConstants.RevitYearVersion);
+
+            _logger = InitLog("", Constants.GetLogFilepath("9999"));
 
             InitializeExporterUi(revitApp);
 

@@ -1,6 +1,6 @@
 using System;
 using System.IO;
-using Vim.Revit.Core;
+//using Vim.Revit.Core;
 
 namespace Custom.Exporter
 {
@@ -24,13 +24,13 @@ namespace Custom.Exporter
             => Path.Combine(TempPluginDir, "Logs", $"CustomExporter-{revitYearVersion}.log");
 
 
-        public static string LocalAppDataPluginYearDir
-            => Path.Combine(
-                Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-                "Custom Exporter",
-                RevitConstants.RevitYearVersion);
+        //public static string LocalAppDataPluginYearDir
+        //    => Path.Combine(
+        //        Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+        //        "Custom Exporter",
+        //        RevitConstants.RevitYearVersion);
 
-        public static string UserSettingsPath => Path.Combine(LocalAppDataPluginYearDir, "settings.json");
+        //public static string UserSettingsPath => Path.Combine(LocalAppDataPluginYearDir, "settings.json");
 
         /// <summary>
         /// "My Documents/Custom Exporter" directory
