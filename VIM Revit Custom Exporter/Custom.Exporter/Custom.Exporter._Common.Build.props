@@ -20,8 +20,8 @@
     <ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
   </PropertyGroup>
 
-  <!-- To keep the syntax consistent between .net framework versions and .net8 versions... -->
-  <PropertyGroup Condition="('$(TargetFramework)'=='net8.0-windows')">
+  <!-- To keep the syntax consistent between .net framework versions and .net8, .net10 versions... -->
+  <PropertyGroup Condition="('$(TargetFramework)'=='net8.0-windows') Or ('$(TargetFramework)'=='net10.0-windows')">
     <UseWindowsForms>true</UseWindowsForms>
     <Nullable>disable</Nullable>
   </PropertyGroup>
