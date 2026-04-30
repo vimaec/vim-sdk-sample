@@ -9,6 +9,6 @@ namespace Custom.Exporter
         /// Initializes logging for the application.
         /// </summary>
         public static ILogger Initialize(string revitYearVersion)
-            => Log.Init("Custom Exporter", Constants.GetLogFilepath(revitYearVersion), true, true);
+            => Log.Init("Custom Exporter", Constants.GetLogFilepath(revitYearVersion));
     }
 }

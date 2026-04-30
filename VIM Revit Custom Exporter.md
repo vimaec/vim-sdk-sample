@@ -1,6 +1,6 @@
 # VIM Revit Custom Exporter
 
-The instructions in this file pertain to running the Visual Studio 2022 solution `VIM Revit Custom Exporter.sln`. This solution illustrates how to use the same codebase to create yearly Revit plugins using C# and WPF. The code is structured as a simple WPF View & ViewModel plugin which exports a VIM file from the current Revit document and lets the user choose where to save the file and which 3D view to export.
+The instructions in this file pertain to running the Visual Studio 2026 solution `VIM Revit Custom Exporter.slnx`. This solution illustrates how to use the same codebase to create yearly Revit plugins using C# and WPF. The code is structured as a simple WPF View & ViewModel plugin which exports a VIM file from the current Revit document and lets the user choose where to save the file and which 3D view to export.
 
 ## Requirements
 
@@ -22,11 +22,11 @@ Before proceeding, please ensure you have met the following criteria:
 
 ## Usage
 
-To successfully build the solution `VIM Revit Custom Exporter.sln`:
+To successfully build the solution `VIM Revit Custom Exporter.slnx`:
 
 - Ensure the requirements above have been met.
 
-- Open `VIM Revit Custom Exporter.sln` in Visual Studio 2022.
+- Open `VIM Revit Custom Exporter.slnx` in Visual Studio 2026.
 
 - Click on "Build" > "Build Solution".
 
